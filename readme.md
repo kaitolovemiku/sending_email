@@ -78,5 +78,5 @@ The Laravel framework is open-source software licensed under the [MIT license](h
 4. เปิดแก้ไขไฟล์ .env แก้ ที่อยู่ database และ email port เป็นของตัวเอง
 5. กด run php artisan migration
 6. กด run php artisan serve
-
+7. ลิ้งตัวอย่างการส่งเมลผมคือ localhost/emails
 
