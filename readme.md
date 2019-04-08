@@ -69,3 +69,13 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## วิธีใช้งาน
+1. ติดตั้ง composer
+2. ติดตั้ง laravel
+3. run npm install
+4. เปิดแก้ไขไฟล์ .env แก้ ที่อยู่ database และ email port เป็นของตัวเอง
+5. กด run php artisan migration
+6. กด run php artisan serve
+
+
