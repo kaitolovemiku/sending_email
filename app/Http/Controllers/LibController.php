@@ -138,11 +138,9 @@ class LibController extends Controller
         $client->addScope(Google_Service_Calendar::CALENDAR);*/
         $event = new Event;
 
-        $event->name = $lib->subject
-        .$event->name = 'at '
-        .$event->name = $lib->appointment_room;
-        $event->startDateTime = Carbon::parse($lib->appointment_date);
-        $event->endDateTime = Carbon::parse($lib->appointment_date)->addHour(3);
+        $event->name = join(" ", [$lib->subject, "at", $lib->appointment_room]);
+        $event->startDateTime = $this->updateDateFormat($lib->appointment_date);
+        $event->endDateTime = $this->updateDateFormat($lib->appointment_date)->addHour(3);
         $event->addAttendee(['email' => $lib->receiver_email]);
         $event->addAttendee(['email' => $lib->sender_email]);
 
@@ -152,6 +150,13 @@ class LibController extends Controller
 
         return redirect('/')->with('success', 'Email saved in database and sent to student successfully.');
 
+    }
+    
+    private function updateDateFormat($timestamp)
+    {
+        $date = Carbon::createFromFormat('Y-m-d H:i:s', $timestamp, 'Asia/Bangkok');
+        $date->setTimezone('UTC+7');   
+        return $date;
     }
 
     public function show(Lib $lib)
