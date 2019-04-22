@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Spatie\GoogleCalendar\Event;
+use App\Lib;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,24 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $emails = Lib::latest()->paginate(5);
+  
+        return view('home',compact('emails'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    
+    public function show(Request $request)
+    {
+        $data = Lib::find($request->home);
+        return view('lib.show',compact('data'));
+    }
+
+    public function destroy(Lib $lib)
+    {
+        $lib->delete();
+  
+        return redirect()->route('home')
+                        ->with('success','Email deleted successfully');
     }
 }

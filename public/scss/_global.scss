@@ -1,54 +1,60 @@
-// Global styling for this theme
+// Global component styles
 
 html {
-  height: 100%;
+  position: relative;
+  min-height: 100%;
 }
 
 body {
   height: 100%;
-  min-height: 35rem;
-  position: relative;
-  @include body-font;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @include heading-font;
+a {
+  &:focus {
+    outline: none;
+  }
 }
 
-video {
+// Main page wrapper
+#wrapper {
+  display: flex;
+  #content-wrapper {
+    background-color: $gray-100;
+    width: 100%;
+    overflow-x: hidden;
+    #content {
+      flex: 1 0 auto;
+    }
+  }
+}
+
+// Set container padding to match gutter width instead of default 15px
+.container,
+.container-fluid {
+  padding-left: $grid-gutter-width;
+  padding-right: $grid-gutter-width;
+}
+
+// Scroll to top button
+.scroll-to-top {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translateX(-50%) translateY(-50%);
-  z-index: 0;
-}
-
-@media (pointer: coarse) and (hover: none) {
-  body {
-    background: url('../img/bg-mobile-fallback.jpg') $primary no-repeat center center scroll;
-    background-position: cover;
+  right: 1rem;
+  bottom: 1rem;
+  display: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  text-align: center;
+  color: $white;
+  background: fade-out($gray-800, .5);
+  line-height: 46px;
+  &:focus,
+  &:hover {
+    color: white;
   }
-  body video {
-    display: none;
+  &:hover {
+    background: $gray-800;
   }
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: $secondary;
-  opacity: 0.7;
-  z-index: 1;
+  i {
+    font-weight: 800;
+  }
 }
